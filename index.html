@@ -23,7 +23,8 @@ h2{font-size:15px;margin:0 0 10px;text-transform:uppercase;letter-spacing:.04em;
 label{display:block;font-size:12px;color:var(--mu);margin-bottom:3px}
 input,select{width:100%;padding:8px;border:1px solid var(--br);border-radius:7px;background:var(--bg);color:var(--tx);font:inherit}
 .scroll{overflow-x:auto}
-table{width:100%;border-collapse:collapse;min-width:640px}
+table{width:100%;border-collapse:collapse;min-width:580px;table-layout:fixed}
+col.c1{width:22%}col.c2{width:13%}col.c3{width:12%}col.c4{width:19%}col.c5{width:11%}col.c6{width:15%}col.c7{width:32px}
 th{font-size:12px;color:var(--mu);text-align:left;padding:4px 6px;font-weight:600}
 td{padding:4px 6px;vertical-align:middle}
 td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:600}
@@ -42,28 +43,29 @@ button.p{background:var(--ac);color:var(--acx);border-color:var(--ac);font-weigh
 @media print{
 :root,:root:not([data-theme="light"]),:root[data-theme="dark"]{--bg:#fff;--card:#fff;--tx:#000;--mu:#444;--br:#999;--bad:#000;--ok:#000;color-scheme:light;padding:0}
 .lang,.bar,.noprint,p.hint,th:last-child,td:last-child{display:none!important}
-body{background:#fff;color:#000;font-size:10.5pt;line-height:1.3}
-.wrap{max-width:none;padding:13mm 15mm}
+body{background:#fff;color:#000;font-size:10pt;line-height:1.25}
+.wrap{max-width:none;padding:11mm 15mm}
 header{border-bottom:2px solid #000;padding-bottom:6px;margin-bottom:10px}
 h1{font-size:20pt}
 .sub{color:#444}
-section{background:none;border:0;border-bottom:1px solid #999;border-radius:0;padding:8px 0;margin:0;break-inside:avoid}
-h2{font-size:10pt;color:#000;border-bottom:0;margin-bottom:6px}
+section{background:none;border:0;border-bottom:1px solid #999;border-radius:0;padding:4px 0;margin:0;break-inside:avoid}
+h2{font-size:9pt;color:#000;border-bottom:0;margin-bottom:4px}
 label{font-size:8.5pt;color:#555;margin:0}
 input,select{border:0;background:transparent;padding:1px 0;font:inherit;font-weight:600;color:#000;appearance:none;-webkit-appearance:none;-moz-appearance:none;border-radius:0}
 input[type=date]::-webkit-calendar-picker-indicator{display:none}
 input[type=number]{-moz-appearance:textfield}
 input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
-.g{gap:6px 14px}
+.g{gap:6px 14px;grid-template-columns:repeat(4,1fr)}
 .scroll{overflow:visible}
 table{min-width:0}
 th{color:#000;border-bottom:1px solid #000;font-size:9pt}
-td{border-bottom:1px solid #ddd;padding:3px 6px}
+td{border-bottom:1px solid #ddd;padding:2px 6px}
 input,select{display:none!important}
 .pv{display:inline-block;font-weight:600;overflow-wrap:anywhere}
 .pair{gap:12px}
 table{table-layout:fixed}
-th:nth-child(1){width:27%}th:nth-child(2){width:14%}th:nth-child(3){width:21%}th:nth-child(4){width:21%}th:nth-child(5){width:17%}
+table{table-layout:fixed}
+th{overflow-wrap:anywhere;word-break:break-word}td{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}td:nth-child(1){white-space:normal}
 .sum{max-width:none;margin:0 0 0 auto;width:60%}
 .res{border-top:2px solid #000;font-size:14pt}
 }
@@ -80,13 +82,16 @@ th:nth-child(1){width:27%}th:nth-child(2){width:14%}th:nth-child(3){width:21%}th
  <div><label data-t="landlord"></label><input id="vm"></div>
  <div><label data-t="tenant"></label><input id="mt"></div>
  <div><label data-t="object"></label><input id="obj"></div>
+</div><div class="g" style="margin-top:10px">
+ <div><label data-t="objNr"></label><input id="onr"></div>
+ <div><label data-t="weNr"></label><input id="wnr"></div>
 </div></section>
 
 <section><h2 data-t="period"></h2><div class="g">
- <div><label data-t="pFrom"></label><input type="date" id="p1" value="2025-01-01"></div>
- <div><label data-t="pTo"></label><input type="date" id="p2" value="2025-12-31"></div>
- <div><label data-t="uFrom"></label><input type="date" id="u1" value="2025-01-01"></div>
- <div><label data-t="uTo"></label><input type="date" id="u2" value="2025-12-31"></div>
+ <div><label data-t="pFrom"></label><input type="date" id="p1" value="2026-01-01"></div>
+ <div><label data-t="pTo"></label><input type="date" id="p2" value="2026-12-31"></div>
+ <div><label data-t="uFrom"></label><input type="date" id="u1" value="2026-01-01"></div>
+ <div><label data-t="uTo"></label><input type="date" id="u2" value="2026-12-31"></div>
 </div></section>
 
 <section><h2 data-t="keysH"></h2><div class="g">
@@ -99,8 +104,8 @@ th:nth-child(1){width:27%}th:nth-child(2){width:14%}th:nth-child(3){width:21%}th
 </div></section>
 
 <section><h2 data-t="costs"></h2>
- <div class="scroll"><table><thead><tr>
-  <th data-t="cName"></th><th data-t="cTotal"></th><th data-t="cKey"></th><th data-t="cCons"></th><th data-t="cShare"></th><th></th>
+ <div class="scroll"><table><colgroup><col class="c1"><col class="c2"><col class="c3"><col class="c4"><col class="c5"><col class="c6"><col class="c7"></colgroup><thead><tr>
+  <th data-t="cName"></th><th data-t="cTotal"></th><th data-t="cVat"></th><th data-t="cKey"></th><th data-t="cDocs"></th><th data-t="cShare"></th><th></th>
  </tr></thead><tbody id="rows"></tbody></table></div>
  <div class="bar noprint"><button class="b" id="add"></button></div>
  <p class="hint" data-t="hint"></p>
@@ -113,6 +118,7 @@ th:nth-child(1){width:27%}th:nth-child(2){width:14%}th:nth-child(3){width:21%}th
 
 <section><h2 data-t="result"></h2><div class="sum">
  <div><span data-t="sCosts"></span><b id="s1"></b></div>
+ <div style="font-size:13px;color:var(--mu)"><span data-t="sVat"></span><span id="sv"></span></div>
  <div><span data-t="sPrep"></span><b id="s2"></b></div>
  <div class="res"><span id="rl"></span><span id="rv"></span></div>
  <div class="hint" id="fac"></div>
@@ -123,15 +129,16 @@ th:nth-child(1){width:27%}th:nth-child(2){width:14%}th:nth-child(3){width:21%}th
 
 <script>
 const T={
-de:{title:'Nebenkostenabrechnung',sub:'Betriebskostenabrechnung für Mietverhältnisse',parties:'Parteien',landlord:'Vermieter',tenant:'Mieter',object:'Mietobjekt / Adresse',period:'Zeiträume',pFrom:'Abrechnungszeitraum von',pTo:'Abrechnungszeitraum bis',uFrom:'Nutzungszeitraum von',uTo:'Nutzungszeitraum bis',keysH:'Verteilerschlüssel',areaM:'Wohnfläche Mieter (m²)',areaT:'Gesamtfläche Haus (m²)',perM:'Personen Mieter',perT:'Personen gesamt',unM:'Einheiten Mieter',unT:'Einheiten gesamt',costs:'Kostenpositionen',cName:'Bezeichnung',cTotal:'Gesamtkosten (€)',cKey:'Schlüssel',cCons:'Verbrauch (Mieter / gesamt)',cShare:'Anteil Mieter',add:'+ Position hinzufügen',hint:'Bei „Verbrauch“ den Verbrauch des Mieters und den Gesamtverbrauch eintragen; bei „Direkt“ wird der volle Betrag angesetzt. Die übrigen Schlüssel werden anteilig nach Nutzungsdauer berechnet.',prepH:'Vorauszahlungen',prepM:'Monatliche Vorauszahlung (€)',prepN:'Anzahl Monate',result:'Ergebnis',sCosts:'Summe Nebenkosten (Anteil Mieter)',sPrep:'Geleistete Vorauszahlungen',nach:'Nachzahlung',guth:'Guthaben',fac:'Nutzungsfaktor',print:'Drucken / PDF',kA:'Wohnfläche',kP:'Personen',kU:'Einheiten',kC:'Verbrauch',kD:'Direkt',del:'Entfernen',r1:'Grundsteuer',r2:'Wasser / Abwasser',r3:'Müllabfuhr',r4:'Hausmeister',r5:'Gebäudeversicherung',r6:'Allgemeinstrom',r7:'Straßenreinigung',r8:'Heizkosten',nw:'Neue Position',loc:'de-DE'},
-it:{title:'Nebenkostenabrechnung',sub:'Conguaglio delle spese accessorie di locazione (Deutschland)',parties:'Parti',landlord:'Locatore',tenant:'Conduttore',object:'Immobile / indirizzo',period:'Periodi',pFrom:'Periodo di conguaglio dal',pTo:'Periodo di conguaglio al',uFrom:'Periodo di utilizzo dal',uTo:'Periodo di utilizzo al',keysH:'Chiavi di ripartizione',areaM:'Superficie conduttore (m²)',areaT:'Superficie totale edificio (m²)',perM:'Persone conduttore',perT:'Persone totali',unM:'Unità conduttore',unT:'Unità totali',costs:'Voci di spesa',cName:'Descrizione',cTotal:'Costi totali (€)',cKey:'Chiave',cCons:'Consumo (conduttore / totale)',cShare:'Quota conduttore',add:'+ Aggiungi voce',hint:'Per «Consumo» inserire il consumo del conduttore e il consumo totale; per «Diretto» si applica l’intero importo. Le altre chiavi sono calcolate pro rata in base alla durata di utilizzo.',prepH:'Acconti versati',prepM:'Acconto mensile (€)',prepN:'Numero di mesi',result:'Risultato',sCosts:'Totale spese accessorie (quota conduttore)',sPrep:'Acconti versati',nach:'Conguaglio a debito',guth:'Credito',fac:'Fattore di utilizzo',print:'Stampa / PDF',kA:'Superficie',kP:'Persone',kU:'Unità',kC:'Consumo',kD:'Diretto',del:'Rimuovi',r1:'Imposta fondiaria',r2:'Acqua / scarichi',r3:'Rifiuti',r4:'Portiere / custode',r5:'Assicurazione edificio',r6:'Elettricità parti comuni',r7:'Pulizia strade',r8:'Riscaldamento',nw:'Nuova voce',loc:'it-IT'},
-pt:{title:'Nebenkostenabrechnung',sub:'Acerto de despesas acessórias de arrendamento (Alemanha)',parties:'Partes',landlord:'Senhorio',tenant:'Inquilino',object:'Imóvel / morada',period:'Períodos',pFrom:'Período de acerto de',pTo:'Período de acerto até',uFrom:'Período de utilização de',uTo:'Período de utilização até',keysH:'Critérios de repartição',areaM:'Área do inquilino (m²)',areaT:'Área total do edifício (m²)',perM:'Pessoas do inquilino',perT:'Pessoas no total',unM:'Unidades do inquilino',unT:'Unidades no total',costs:'Rubricas de custos',cName:'Designação',cTotal:'Custos totais (€)',cKey:'Critério',cCons:'Consumo (inquilino / total)',cShare:'Parte do inquilino',add:'+ Adicionar rubrica',hint:'Em «Consumo», indique o consumo do inquilino e o consumo total; em «Direto», aplica-se o valor integral. Os restantes critérios são calculados proporcionalmente ao tempo de utilização.',prepH:'Adiantamentos',prepM:'Adiantamento mensal (€)',prepN:'Número de meses',result:'Resultado',sCosts:'Total das despesas (parte do inquilino)',sPrep:'Adiantamentos pagos',nach:'Pagamento adicional',guth:'Crédito a favor',fac:'Fator de utilização',print:'Imprimir / PDF',kA:'Área',kP:'Pessoas',kU:'Unidades',kC:'Consumo',kD:'Direto',del:'Remover',r1:'Imposto predial',r2:'Água / esgotos',r3:'Recolha de lixo',r4:'Porteiro / zelador',r5:'Seguro do edifício',r6:'Eletricidade das partes comuns',r7:'Limpeza de ruas',r8:'Aquecimento',nw:'Nova rubrica',loc:'pt-PT'}
+de:{title:'Nebenkostenabrechnung',sub:'Betriebskostenabrechnung für Mietverhältnisse',parties:'Parteien',landlord:'Vermieter',tenant:'Mieter',object:'Mietobjekt / Adresse',period:'Zeiträume',pFrom:'Abrechnungszeitraum von',pTo:'Abrechnungszeitraum bis',uFrom:'Nutzungszeitraum von',uTo:'Nutzungszeitraum bis',keysH:'Verteilerschlüssel',areaM:'Wohnfläche Mieter (m²)',areaT:'Gesamtfläche Haus (m²)',perM:'Personen Mieter',perT:'Personen gesamt',unM:'Einheiten Mieter',unT:'Einheiten gesamt',costs:'Kostenpositionen',cName:'Bezeichnung',cTotal:'Brutto-Betrag (€)',cKey:'Schlüssel',cCons:'Verbrauch (Mieter / gesamt)',cShare:'Anteil Mieter',add:'+ Position hinzufügen',hint:'Bei „Verbrauch“ den Verbrauch des Mieters und den Gesamtverbrauch eintragen; bei „Direkt“ wird der volle Betrag angesetzt. Die übrigen Schlüssel werden anteilig nach Nutzungsdauer berechnet.',prepH:'Vorauszahlungen',prepM:'Monatliche Vorauszahlung (€)',prepN:'Anzahl Monate',result:'Ergebnis',sCosts:'Summe Nebenkosten (Anteil Mieter)',sPrep:'Geleistete Vorauszahlungen',nach:'Nachzahlung',guth:'Guthaben',fac:'Nutzungsfaktor',print:'Drucken / PDF',kA:'HN Wohnfläche',kP:'Personen',kU:'Anzahl WE',kC:'Verbrauch',kD:'Direkt',del:'Entfernen',r1:'Wasser/Abwasser',r2:'Allgemeinstrom',r3:'Müllgebühren',r4:'Hausreinigung',r5:'Kaminkehrer',r6:'Versicherungen',r7:'Kabelfernsehen',r8:'Aufzug',r9:'Grundsteuer',r10:'Wartung Heizung Brenner',r11:'Abrechnungsservice KW',nw:'Neue Position',objNr:'Objekt-Nr.',weNr:'Wohneinheit (WE-Nr.)',cVat:'MwSt. (UST)',cDate:'Rechnungs­datum',cDocs:'Anzahl Dokumente',sVat:'Darin enthaltene MwSt.',loc:'de-DE'},
+it:{title:'Nebenkostenabrechnung',sub:'Conguaglio delle spese accessorie di locazione (Deutschland)',parties:'Parti',landlord:'Locatore',tenant:'Conduttore',object:'Immobile / indirizzo',period:'Periodi',pFrom:'Periodo di conguaglio dal',pTo:'Periodo di conguaglio al',uFrom:'Periodo di utilizzo dal',uTo:'Periodo di utilizzo al',keysH:'Chiavi di ripartizione',areaM:'Superficie conduttore (m²)',areaT:'Superficie totale edificio (m²)',perM:'Persone conduttore',perT:'Persone totali',unM:'Unità conduttore',unT:'Unità totali',costs:'Voci di spesa',cName:'Descrizione',cTotal:'Importo lordo (€)',cKey:'Chiave',cCons:'Consumo (conduttore / totale)',cShare:'Quota conduttore',add:'+ Aggiungi voce',hint:'Per «Consumo» inserire il consumo del conduttore e il consumo totale; per «Diretto» si applica l’intero importo. Le altre chiavi sono calcolate pro rata in base alla durata di utilizzo.',prepH:'Acconti versati',prepM:'Acconto mensile (€)',prepN:'Numero di mesi',result:'Risultato',sCosts:'Totale spese accessorie (quota conduttore)',sPrep:'Acconti versati',nach:'Conguaglio a debito',guth:'Credito',fac:'Fattore di utilizzo',print:'Stampa / PDF',kA:'Superficie (HN)',kP:'Persone',kU:'N. unità (WE)',kC:'Consumo',kD:'Diretto',del:'Rimuovi',r1:'Acqua / scarichi',r2:'Elettricità parti comuni',r3:'Tassa rifiuti',r4:'Pulizia dell’edificio',r5:'Spazzacamino',r6:'Assicurazioni',r7:'Televisione via cavo',r8:'Ascensore',r9:'Imposta fondiaria',r10:'Manutenzione bruciatore riscaldamento',r11:'Servizio di conguaglio KW',nw:'Nuova voce',objNr:'N. oggetto',weNr:'Unità abitativa (N. WE)',cVat:'IVA (UST)',cDate:'Data fattura',cDocs:'N. documenti',sVat:'di cui IVA inclusa',loc:'it-IT'},
+pt:{title:'Nebenkostenabrechnung',sub:'Acerto de despesas acessórias de arrendamento (Alemanha)',parties:'Partes',landlord:'Senhorio',tenant:'Inquilino',object:'Imóvel / morada',period:'Períodos',pFrom:'Período de acerto de',pTo:'Período de acerto até',uFrom:'Período de utilização de',uTo:'Período de utilização até',keysH:'Critérios de repartição',areaM:'Área do inquilino (m²)',areaT:'Área total do edifício (m²)',perM:'Pessoas do inquilino',perT:'Pessoas no total',unM:'Unidades do inquilino',unT:'Unidades no total',costs:'Rubricas de custos',cName:'Designação',cTotal:'Montante bruto (€)',cKey:'Critério',cCons:'Consumo (inquilino / total)',cShare:'Parte do inquilino',add:'+ Adicionar rubrica',hint:'Em «Consumo», indique o consumo do inquilino e o consumo total; em «Direto», aplica-se o valor integral. Os restantes critérios são calculados proporcionalmente ao tempo de utilização.',prepH:'Adiantamentos',prepM:'Adiantamento mensal (€)',prepN:'Número de meses',result:'Resultado',sCosts:'Total das despesas (parte do inquilino)',sPrep:'Adiantamentos pagos',nach:'Pagamento adicional',guth:'Crédito a favor',fac:'Fator de utilização',print:'Imprimir / PDF',kA:'Área (HN)',kP:'Pessoas',kU:'N.º unid. (WE)',kC:'Consumo',kD:'Direto',del:'Remover',r1:'Água / esgotos',r2:'Eletricidade das partes comuns',r3:'Taxa de lixo',r4:'Limpeza do edifício',r5:'Limpa-chaminés',r6:'Seguros',r7:'Televisão por cabo',r8:'Elevador',r9:'Imposto predial',r10:'Manutenção do queimador de aquecimento',r11:'Serviço de acerto KW',nw:'Nova rubrica',objNr:'N.º do objeto',weNr:'Unidade (N.º WE)',cVat:'IVA (UST)',cDate:'Data da fatura',cDocs:'N.º de documentos',sVat:'Do qual IVA incluído',loc:'pt-PT'}
 };
 let L='de';
 try{L=localStorage.getItem('nk-lang')||'de'}catch(e){}
 if(!T[L])L='de';
 const KEYS=['A','P','U','C','D'];
-const rows=[['r1',1200,'A'],['r2',3100,'P'],['r3',980,'P'],['r4',2400,'A'],['r5',1850,'A'],['r6',420,'U'],['r7',160,'A'],['r8',9800,'C',3200,9400]].map(r=>({nk:r[0],name:null,tot:r[1],key:r[2],cm:r[3]||0,ct:r[4]||0}));
+const R=[['r1','C',19],['r2','A',19],['r3','U',0],['r4','U',0],['r5','A',7],['r6','A',19],['r7','U',7],['r8','A',7],['r9','A',0],['r10','U',0],['r11','U',19]];
+const rows=R.map(r=>({nk:r[0],name:null,tot:0,key:r[1],cm:0,ct:0,vat:r[2],date:'',docs:0}));
 const $=id=>document.getElementById(id);
 const v=id=>parseFloat($(id).value)||0;
 const nm=r=>r.name!==null?r.name:T[L][r.nk];
@@ -154,8 +161,9 @@ function render(){
  $('rows').innerHTML=rows.map((r,i)=>`<tr>
   <td><input data-i="${i}" data-f="name" value="${nm(r).replace(/"/g,'&quot;')}"></td>
   <td><input type="number" step="0.01" data-i="${i}" data-f="tot" value="${r.tot}"></td>
-  <td><select data-i="${i}" data-f="key">${KEYS.map(k=>`<option value="${k}"${k===r.key?' selected':''}>${t['k'+k]}</option>`).join('')}</select></td>
-  <td>${r.key==='C'?`<div class="pair"><input type="number" step="any" data-i="${i}" data-f="cm" value="${r.cm}"><input type="number" step="any" data-i="${i}" data-f="ct" value="${r.ct}"></div>`:''}</td>
+  <td><select data-i="${i}" data-f="vat">${[0,7,19].map(x=>`<option value="${x}"${x===r.vat?' selected':''}>${x} %</option>`).join('')}</select></td>
+  <td><select data-i="${i}" data-f="key">${KEYS.filter(k=>k!=='C').map(k=>`<option value="${k}"${k===r.key?' selected':''}>${t['k'+k]}</option>`).join('')}</select></td>
+  <td><input type="number" min="0" data-i="${i}" data-f="docs" value="${r.docs}"></td>
   <td class="n" id="rs${i}"></td>
   <td><button class="b x" data-del="${i}" title="${t.del}">✕</button></td></tr>`).join('');
  calc();
@@ -164,11 +172,11 @@ function calc(){
  const t=T[L];
  const pd=days($('p1').value,$('p2').value);
  let f=pd>0?Math.min(days($('u1').value,$('u2').value)/pd,1):1;
- let sum=0;
- rows.forEach((r,i)=>{const s=share(r,f);sum+=s;const c=$('rs'+i);if(c)c.textContent=fmt(s)});
+ let sum=0,vat=0;
+ rows.forEach((r,i)=>{const s=share(r,f);sum+=s;vat+=s*r.vat/(100+r.vat);const c=$('rs'+i);if(c)c.textContent=fmt(s)});
  const prep=v('vz')*v('vn');
  const diff=sum-prep;
- $('s1').textContent=fmt(sum);$('s2').textContent=fmt(prep);
+ $('s1').textContent=fmt(sum);$('sv').textContent=fmt(vat);$('s2').textContent=fmt(prep);
  $('rl').textContent=diff>0?t.nach:t.guth;
  $('rv').textContent=fmt(Math.abs(diff));
  $('rv').className=diff>0?'pos':'neg';
@@ -180,6 +188,7 @@ document.addEventListener('input',e=>{
   const r=rows[i],f=el.dataset.f;
   if(f==='name')r.name=el.value;
   else if(f==='key'){r.key=el.value;render();return}
+  else if(f==='date')r.date=el.value;
   else r[f]=parseFloat(el.value)||0;
  }
  calc();
@@ -188,7 +197,7 @@ document.addEventListener('click',e=>{
  const b=e.target.closest('button');if(!b)return;
  if(b.dataset.l){L=b.dataset.l;try{localStorage.setItem('nk-lang',L)}catch(x){}render()}
  else if(b.dataset.del!==undefined){rows.splice(+b.dataset.del,1);render()}
- else if(b.id==='add'){rows.push({nk:'nw',name:null,tot:0,key:'A',cm:0,ct:0});render()}
+ else if(b.id==='add'){rows.push({nk:'nw',name:null,tot:0,key:'A',cm:0,ct:0,vat:19,date:'',docs:0});render()}
  else if(b.id==='print'){try{window.print()}catch(x){}}
 });
 render();
